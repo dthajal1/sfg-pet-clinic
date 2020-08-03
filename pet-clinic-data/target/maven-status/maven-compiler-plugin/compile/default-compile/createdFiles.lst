@@ -1,0 +1,5 @@
+com/clinic/sfgpetclinic/model/Pet.class
+com/clinic/sfgpetclinic/model/Owner.class
+com/clinic/sfgpetclinic/model/Person.class
+com/clinic/sfgpetclinic/model/PetType.class
+com/clinic/sfgpetclinic/model/Vet.class

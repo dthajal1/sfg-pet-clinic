@@ -1,20 +1,26 @@
 package com.clinic.sfgpetclinic.services.map;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import com.clinic.sfgpetclinic.model.BaseEntity;
 
-public abstract class AbstractMapService<T, ID> {
+import java.util.*;
 
-    protected Map<ID, T> map = new HashMap<>();
+public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {
+
+    protected Map<Long, T> map = new HashMap<>();
 
     T findById(ID id) {
         return map.get(id);
     }
 
-    T save(ID id, T object) {
-        map.put(id, object);
+    T save(T object) {
+        if (object != null) {
+            if (object.getId() == null) {
+                object.setId(getNextId());
+            }
+            map.put(getNextId(), object);
+        } else {
+            throw new RuntimeException("Objects cannot be null");
+        }
         return object;
     }
 
@@ -34,6 +40,17 @@ public abstract class AbstractMapService<T, ID> {
 //                map.remove(entry.getKey());
 //            }
 //        }
+    }
+
+    Long getNextId() {
+        Long nextId;
+
+        try {
+            nextId = Collections.max(map.keySet()) + 1;
+        } catch (NoSuchElementException exp) {
+            nextId = 1L;
+        }
+        return nextId;
     }
 
 }

@@ -2,11 +2,13 @@ package com.clinic.sfgpetclinic.bootstrap;
 
 import com.clinic.sfgpetclinic.model.*;
 import com.clinic.sfgpetclinic.services.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -28,6 +30,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        log.info("Data Loaded.... ##############################");
         int count = petTypeService.findAll().size();
 
         if (count == 0) {

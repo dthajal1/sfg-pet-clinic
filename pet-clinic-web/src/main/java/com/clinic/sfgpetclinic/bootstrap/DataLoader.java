@@ -94,6 +94,12 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(owner2);
         System.out.println("Owners Loaded...");
 
+//        to check findAllByLastNameLike()
+        Owner owner3 = new Owner();
+        owner3.setFirstName("Hello");
+        owner3.setLastName("Ronalda");
+        ownerService.save(owner3);
+
         Visit catVisit = new Visit();
         catVisit.setDate(LocalDate.now());
         catVisit.setPet(ronaldosPet);

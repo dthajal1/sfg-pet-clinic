@@ -28,7 +28,8 @@ public class VisitController {
     public void dataBinder(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
 
-        dataBinder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
+        //this solves the date validation error (global solution <-- any date that passes through visit controller
+        dataBinder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() { //  will go through this)
             @Override
             public void setAsText(String text) throws IllegalArgumentException{
                 setValue(LocalDate.parse(text));
